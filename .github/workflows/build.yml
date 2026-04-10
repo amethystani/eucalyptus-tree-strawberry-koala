@@ -24,14 +24,15 @@ jobs:
 
       - uses: game-ci/unity-builder@v4
         env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform:      WebGL
-          unityVersion:        auto
-          licenseType:         Personal
-          buildMethod:         SceneAutoBuilder.BuildAll
-          allowDirtyBuild:     true
+          targetPlatform:  WebGL
+          unityVersion:    auto
+          licenseType:     Personal
+          buildMethod:     SceneAutoBuilder.BuildAll
+          allowDirtyBuild: true
 
       - uses: actions/upload-artifact@v4
         with:
