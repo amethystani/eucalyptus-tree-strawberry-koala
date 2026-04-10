@@ -24,15 +24,23 @@ jobs:
 
       - uses: game-ci/unity-builder@v4
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:   ${{ secrets.UNITY_EMAIL }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: WebGL
-          unityVersion:   auto
-          buildMethod:    SceneAutoBuilder.BuildAll
+          targetPlatform:      WebGL
+          unityVersion:        auto
+          licenseType:         Personal
+          buildMethod:         SceneAutoBuilder.BuildAll
+          allowDirtyBuild:     true
 
       - uses: actions/upload-artifact@v4
         with:
           name: WebGL-Build
           path: build/WebGL
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: success()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:  build/WebGL
