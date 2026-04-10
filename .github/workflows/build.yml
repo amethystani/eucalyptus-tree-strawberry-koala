@@ -22,18 +22,11 @@ jobs:
             Library-WebGL-
             Library-
 
-      - name: Activate Unity
-        uses: game-ci/unity-activate@v2
-        env:
-          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL:   ${{ secrets.UNITY_SERIAL }}
-
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL:   ${{ secrets.UNITY_SERIAL }}
+          UNITY_SERIAL:   ${{ secrets.test }}
         with:
           targetPlatform:  WebGL
           unityVersion:    auto
@@ -50,5 +43,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: success()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir:  build/WebGL
+          github_token:  ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:   build/WebGL
