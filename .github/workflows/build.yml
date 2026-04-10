@@ -26,7 +26,7 @@ jobs:
         env:
           UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL:   ${{ secrets.test }}
+          UNITY_LICENSE:  ${{ secrets.test }}
         with:
           targetPlatform:  WebGL
           unityVersion:    auto
